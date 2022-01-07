@@ -32,7 +32,7 @@ echo "  ║  This server should ONLY host multi-bunch feedback servers.         
 echo "  ║  Be aware that it runs some EPICS devices.                               ║"
 echo "  ║                                                                          ║"
 echo "  ║  For more information please consult:                                    ║"
-echo "  ║  http://wikiserv.esrf.fr/asd-diag/index.php/Bunch-by-Bunch_Feedback_DLS  ║"
+echo "  ║  https://confluence.esrf.fr/pages/viewpage.action?pageId=5768745         ║"
 echo "  ║                                                                          ║"
 echo "  ║                                                                          ║"
 echo "  ╚══════════════════════════════════════════════════════════════════════════╝"
