@@ -21,4 +21,4 @@ ORBendPoint=giop:tcp:160.103.10.29:
 
 PATH=/opt/os/epics/local:bin/linux-x86_64:/opt/os/epics/local/bin/linux-x86_64:/operation/common/miniconda3/bin:/operation/common/miniconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/os/bin:/opt/os/script:/opt/os/util:/opt/os/python/scripts:/opt/puppetlabs/bin
 
-CONDA_ENV=mbf
+CONDA_ENV=py37-mbf
