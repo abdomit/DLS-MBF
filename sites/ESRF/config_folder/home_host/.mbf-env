@@ -1,5 +1,5 @@
 TANGO_HOST=acs.esrf.fr:10000,acs.esrf.fr:11000
-LD_LIBRARY_PATH=/opt/os/lib:/opt/os/lib/classes:/lib:/usr/lib:/usr/local/lib:/opt/os/epics/local/lib/linux-x86_64
+LD_LIBRARY_PATH=/opt/os/lib:/opt/os/lib/classes:/lib:/usr/lib:/usr/local/lib:/opt/os/epics/local/lib/linux-x86_64:/opt/host/pythonIoc/softIocApp/O.linux-x86_64
 
 EPICS_CA_MAX_ARRAY_BYTES=1048576
 
@@ -15,10 +15,6 @@ EPICS_CA_ADDR_LIST=160.103.11.255
 EPICS_BASE=/opt/os/epics/local
 EPICS_HOST_ARCH=linux-x86_64
 
-# This is not a shell file...
-#IP_ON_INTF=$(ip addr show enp1s0f3 | grep inet | cut -d' ' -f6 | cut -d'/' -f1)
-ORBendPoint=giop:tcp:160.103.10.29:
-
-PATH=/opt/os/epics/local:bin/linux-x86_64:/opt/os/epics/local/bin/linux-x86_64:/operation/common/miniconda3/bin:/operation/common/miniconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/os/bin:/opt/os/script:/opt/os/util:/opt/os/python/scripts:/opt/puppetlabs/bin
+PATH=/opt/os/epics/local:bin/linux-x86_64:/opt/os/epics/local/bin/linux-x86_64:/operation/common/miniconda3/bin:/operation/common/miniconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/os/bin:/opt/os/script:/opt/os/util:/opt/os/python/scripts:/opt/puppetlabs/bin:/opt/host/pythonIoc/softIocApp/O.linux-x86_64
 
 CONDA_ENV=py37-mbf
