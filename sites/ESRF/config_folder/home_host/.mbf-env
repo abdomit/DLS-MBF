@@ -18,4 +18,5 @@ EPICS_HOST_ARCH=linux-x86_64
 
 PATH=/opt/os/epics/local:bin/linux-x86_64:/opt/os/epics/local/bin/linux-x86_64:/operation/common/miniconda3/bin:/operation/common/miniconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/os/bin:/opt/os/script:/opt/os/util:/opt/os/python/scripts:/opt/puppetlabs/bin:/opt/host/pythonIoc/softIocApp/O.linux-x86_64
 
+TANGO_INTF=enp1s0f3
 CONDA_ENV=py37-mbf
