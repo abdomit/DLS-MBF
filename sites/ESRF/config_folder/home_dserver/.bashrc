@@ -3,47 +3,18 @@
 #[[ $- == *i* ]] && stty erase '^?'
 
 source /opt/host/.mbf-env
-
-# Make sure state backup folder exists
-if [ -d /opt/host/mbf ]; then
-        [[ ! /opt/host/autosave/TMBF ]] && mkdir -p /opt/host/autosave/TMBF
-        [[ ! /opt/host/autosave/TFIT ]] && mkdir -p /opt/host/autosave/TFIT
-fi
-
-padding='                                        '
-PADDED_HOSTNAME=$(printf "%s %s" "$HOSTNAME" "${padding:${#HOSTNAME}}")
-
-if [ -n "$WELCOME_MESSAGE" ]; then
-	return
-fi
-
-export WELCOME_MESSAGE="done"
-
-echo ""
-echo ""
-echo "  ╔══════════════════════════════════════════════════════════════════════════╗"
-echo "  ║                                                                          ║"
-echo "  ║                     WELCOME on $PADDED_HOSTNAME ║"
-echo "  ║                   ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉                             ║"
-echo "  ║                                                                          ║"
-echo "  ║  This is a multi-bunch feedback (MBF) crate.                             ║"
-echo "  ║                                                                          ║"
-echo "  ║  This server should ONLY host multi-bunch feedback servers.              ║"
-echo "  ║  Be aware that it runs some EPICS devices.                               ║"
-echo "  ║                                                                          ║"
-echo "  ║  For more information please consult:                                    ║"
-echo "  ║  https://confluence.esrf.fr/pages/viewpage.action?pageId=5768745         ║"
-echo "  ║                                                                          ║"
-echo "  ║                                                                          ║"
-echo "  ╚══════════════════════════════════════════════════════════════════════════╝"
-echo ""
-echo ""
+export EPICS_BASE
+export EPICS_HOST_ARCH
+export EPICS_CA_MAX_ARRAY_BYTES
+export EPICS_CA_AUTO_ADDR_LIST
+export EPICS_CA_ADDR_LIST
+export EPICS_CA_NAME_SERVERS
 
 # Load MiniConda env in interactive session
 if [ -f "/operation/common/miniconda/etc/profile.d/conda.sh" ]; then
     source "/operation/common/miniconda/etc/profile.d/conda.sh"
     export PATH="$PATH:/operation/common/miniconda/bin"
     CONDA_CHANGEPS1=True
-    conda activate py37-mbf
+    conda activate $CONDA_ENV
 fi
 
