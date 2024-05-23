@@ -40,6 +40,12 @@ if [[ -n "$ETH_PORT" ]]; then
     fi
 fi
 
+# Use custom CA server port
+EPICS_CA_SERVER_PORT="$(read_key "$CONFIG" epics_ca_server_port)"
+if [[ -n "$EPICS_CA_SERVER_PORT" ]]; then
+    export EPICS_CA_SERVER_PORT
+fi
+
 # Determine the IOC launcher and run it
 RUNIOC="$(read_key "$CONFIG" ioc)"
 exec "$TOP/$RUNIOC" "$@" "$CONFIG"

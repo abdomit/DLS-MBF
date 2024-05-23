@@ -4,7 +4,7 @@ Description=Run mbf-backup service every day
 
 [Timer]
 OnCalendar=*-*-* 03:14:15
-AccuracySecs=1us
+AccuracySec=1us
 
 
 [Install]

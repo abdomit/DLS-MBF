@@ -1,63 +1,31 @@
-#!/usr/bin/env python
-#-*- coding: utf-8 -*-
+#!/bin/bash
 
-import mbf.requires
+PYTHONEXEC=/usr/bin/python3
+if [ ! -f $PYTHONEXEC ]; then
+    PYTHONEXEC=/usr/bin/python
+fi
 
-import argparse
-from cothread import catools, Sleep
+PYTHONVERS=$($PYTHONEXEC -c 'from __future__ import print_function; import sys; print(sys.version_info.major, sys.version_info.minor, sep="")')
 
+if [ "$PYTHONVERS" = "27" ]; then
+    PYTHON_MODULES_DIR=
+elif [ "$PYTHONVERS" = "35" ]; then
+    PYTHON_MODULES_DIR=/opt/os/epics/py35-modules/lib/python3.5/site-packages
+elif [ "$PYTHONVERS" = "38" ]; then
+    PYTHON_MODULES_DIR=/opt/os/epics/py38-modules
+else
+    echo "Python version not supported"
+    exit 1
+fi
 
-def _put(axis, pv, value):
-    if axis:
-        target = '%s:%s:%s' % (DEVICE, axis, pv)
-    else:
-        target = '%s:%s' % (DEVICE, pv)
-    if args.debug:
-        print '%s <= %s' % (target, repr(value))
-    if not args.dry_run:
-        catools.caput(target, value)
+if [ ! "$PYTHON_MODULES_DIR" = "" ]; then
+    if [ -d "$PYTHON_MODULES_DIR" ]; then
+        export PYTHONPATH=$PYTHON_MODULES_DIR:$PYTHONPATH
+    else
+        echo "directory $PYTHON_MODULES_DIR" does not exist
+        exit 1
+    fi
+fi
 
-def put(pv, value):
-    _put(AXIS, pv, value)
-
-def get(pv, **kargs):
-    return catools.caget('%s:%s' % (DEVICE, pv), **kargs)
-
-
-# ------------------------------------------------------------------------------
-# Argument parsing
-
-parser = argparse.ArgumentParser(
-    description = 'Do feedback and tune sweep ON/OFF.')
-parser.add_argument(
-    '-d', dest = 'debug', default = False, action = 'store_true',
-    help = 'Enable debug mode')
-parser.add_argument(
-    '-n', dest = 'dry_run', default = False, action = 'store_true',
-    help = 'Dry run, don\'t actually write to device')
-parser.add_argument(
-    '-f', dest = 'feedback_status', default = None, type = int,
-    help = 'Enable Feedback')
-parser.add_argument(
-    '-t', dest = 'sweep_status', default = None, type = int,
-    help = 'Enable Tune sweep')
-parser.add_argument('device', help = 'TMBF device name to configure')
-args = parser.parse_args()
-
-sweep_status = args.sweep_status
-feedback_status = args.feedback_status
-DEVICE, AXIS = args.device.split(':')
-
-if feedback_status:
-    put('SEQ:1:BANK_S', 2)
-    put('SEQ:0:BANK_S', 3)
-elif feedback_status == 0:
-    put('SEQ:1:BANK_S', 0)
-    put('SEQ:0:BANK_S', 1)
-
-if sweep_status:
-    put('SEQ:1:ENABLE_S', 1)
-elif sweep_status == 0:
-    put('SEQ:1:ENABLE_S', 0)
-
-# vim: set filetype=python:
+SCRIPT_DIR=$(dirname $0)
+$PYTHONEXEC $SCRIPT_DIR/mbf-control.py $@
