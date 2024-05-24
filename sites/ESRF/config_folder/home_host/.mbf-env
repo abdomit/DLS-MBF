@@ -4,9 +4,18 @@ LD_LIBRARY_PATH=/opt/os/lib:/opt/os/lib/classes:/lib:/usr/lib:/usr/local/lib:/op
 EPICS_CA_MAX_ARRAY_BYTES=1048576
 
 # This is important to avoid a flood of messages in journalctl
+#  caveat: cannot find IOC on a different machine
+#
 EPICS_CA_AUTO_ADDR_LIST=NO
-EPICS_CA_ADDR_LIST=
-EPICS_CA_NAME_SERVERS="localhost:5164 localhost:5165"
+# There are 2 possibilities:
+#  1/ Do not use beacons (UDP) for PV search requests
+#     caveat: hangs if one of the IOC is not reachable
+#EPICS_CA_ADDR_LIST=
+#EPICS_CA_NAME_SERVERS="localhost:5164 localhost:5165"
+#  2/ Use beacons on localhost for PV search requests
+#     caveat: cannot use ssh tunneling to connect IOC
+EPICS_CA_ADDR_LIST="localhost:5164 localhost:5165"
+EPICS_CA_NAME_SERVERS=
 
 # This is not necessary with the previous lines
 #EPICS_CAS_AUTO_BEACON_ADDR_LIST=NO
