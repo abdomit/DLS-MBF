@@ -3,7 +3,7 @@
 SITE = ESRF
 
 # Override default and install targets for make
-DEFAULT_TARGETS = driver python epics matlab tune_fit iocs
+DEFAULT_TARGETS = driver python epics matlab iocs
 INSTALL_TARGETS = $(DEFAULT_TARGETS)
 
 # Place the driver build on the local filesystem
@@ -32,7 +32,7 @@ DRV_GROUP = 1104
 # Location of Matlab compiler
 MEX = /sware/com/matlab_2017a/bin/mex
 
-# Path to Python Soft IOC
-PYTHON_IOC = /opt/host/pythonIoc/pythonIoc
+# Path to Python executable used for the tunefit IOC
+TUNEFIT_PYTHON = /home/dserver/runtime/venvs/venv_tunefit/bin/python3
 
 # vim: set filetype=make:

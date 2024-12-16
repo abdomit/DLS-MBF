@@ -187,9 +187,9 @@ class Fitter:
         self.verbose = verbose
 
         self.fits = numpy.empty(
-            (samples, config.MAX_PEAKS, 2), dtype = numpy.complex)
+            (samples, config.MAX_PEAKS, 2), dtype = numpy.complex128)
         self.fits[:] = numpy.nan
-        self.offsets = numpy.empty(samples, dtype = numpy.complex)
+        self.offsets = numpy.empty(samples, dtype = numpy.complex128)
         self.offsets[:] = numpy.nan
         self.scale_offsets = numpy.empty(samples)
         self.scale_offsets[:] = numpy.nan

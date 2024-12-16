@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Reads key from given config file.  Called thus:
+#
+#   read_key file key
+read_key()
+{
+    sed -n "/^$2 *= */{s///; p; q;}" "$1"
+}
+
+TOP="$(dirname "$(readlink -f "$0")")"/..
+
+PYTHON=$(read_key $TOP/CONFIG TUNEFIT_PYTHON)
+
+# This seems necessary for softioc
+# otherwise the ioc cannot connect other iocs
+unset LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+HERE="$(dirname "$0")"
+$PYTHON "$HERE"/tune_fit_ioc "$@"
