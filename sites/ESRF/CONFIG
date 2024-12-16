@@ -23,8 +23,8 @@ AMC525_SERVER = l-c31-3 199
 
 # Definitions needed for EPICS driver build
 #
-EPICS_DEVICE = /opt/os/epics/components/epics_device
-EPICS_BASE = /opt/os/epics/local
+EPICS_DEVICE = /home/dserver/runtime/epics_device
+EPICS_BASE = /home/dserver/runtime/epics-base
 
 # Permissions for the driver
 DRV_GROUP = 1104
