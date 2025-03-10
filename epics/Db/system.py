@@ -62,5 +62,5 @@ def add_aggregate(axis, *pvs):
 
 def create_aggregate_pvs():
     for axis in axes('STA', lmbf_mode):
-        pvs = map(CP, aggregate_pvs[axis])
+        pvs = list(map(CP, aggregate_pvs[axis]))
         AggregateSeverity('STATUS', 'Axis %s signal health' % axis, pvs)
