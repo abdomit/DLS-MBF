@@ -45,7 +45,7 @@ def eval_one_peak(fit, s):
 # Evaluates model from a list of fits
 def eval_model(scale, model):
     peaks, offset = model
-    result = numpy.zeros(scale.shape, dtype = numpy.complex) + offset
+    result = numpy.zeros(scale.shape, dtype = numpy.complex128) + offset
     for peak in peaks:
         result += eval_one_peak(peak, scale)
     return result

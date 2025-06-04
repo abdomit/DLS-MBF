@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 import math
@@ -49,7 +49,7 @@ for delay in range(N):
     scan_idelay.set_idelay(regs, delay)
     c = scan_idelay.capture(regs, args.capture_count)
     m = c.std(0).mean()
-    print '%02x' % delay, show(c.mean(0)), m == 0.0, scan_idelay.assess(c)
+    print('%02x' % delay, show(c.mean(0)), m == 0.0, scan_idelay.assess(c))
 
 # Restore previous state
 scan_idelay.complete_scan(regs)

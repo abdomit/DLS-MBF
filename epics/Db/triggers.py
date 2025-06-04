@@ -42,11 +42,7 @@ def target_pvs(prefix):
 
         Action('ARM', DESC = 'Arm trigger')
         Action('DISARM', DESC = 'Disarm trigger')
-        modes = ['One Shot', 'Rearm', 'Shared']
-        if prefix == 'SEQ':
-            # Only enable special "Free Run" mode for SEQ triggers
-            modes.append('Free Run')
-        mbbOut('MODE', *modes, DESC = 'Arming mode')
+        mbbOut('MODE', 'One Shot', 'Rearm', 'Shared', DESC = 'Arming mode')
         mbbIn('STATUS', 'Idle', 'Armed', 'Busy', 'Locked',
             SCAN = 'I/O Intr',
             DESC = 'Trigger target status')

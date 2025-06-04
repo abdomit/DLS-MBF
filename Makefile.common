@@ -18,9 +18,6 @@ MUST_DEFINE += MEX
 MUST_DEFINE += EPICS_BASE
 MUST_DEFINE += EPICS_DEVICE
 
-# Path to Python Soft IOC
-MUST_DEFINE += PYTHON_IOC
-
 # MTCA server followed by list of AMC IPs
 MUST_DEFINE += AMC525_SERVER
 
@@ -33,7 +30,7 @@ MUST_DEFINE += DRV_GROUP
 # Identifies license server for FPGA tools
 LM_LICENSE_FILE =
 
-PYTHON = python2
+PYTHON = python3
 
 BUILD_DIR = $(MBF_TOP)/build
 FPGA_BUILD_DIR = $(BUILD_DIR)/fpga
