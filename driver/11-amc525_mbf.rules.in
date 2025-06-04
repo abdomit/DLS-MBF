@@ -16,10 +16,10 @@ SUBSYSTEM=="amc525_mbf", GROUP="@@DRV_GROUP@@", MODE="0660"
 #   SUBSYSTEM=="amc525_mbf",
 #       PROGRAM="/bin/sh -c '
 #           k=%k;                       # Original name from driver
-#           echo ${k##*.}'",            # Strip off all but the last part
+#           echo $${k##*.}'",           # Strip off all but the last part
 #       IMPORT{builtin}="path_id",      # Defines ID_PATH
 #       SYMLINK+="amc525_mbf/$env{ID_PATH}/amc525_mbf.%c"
 
-SUBSYSTEM=="amc525_mbf", PROGRAM="/bin/sh -c 'k=%k; echo ${k##*.}'", IMPORT{builtin}="path_id", SYMLINK+="amc525_mbf/$env{ID_PATH}/amc525_mbf.%c"
+SUBSYSTEM=="amc525_mbf", PROGRAM="/bin/sh -c 'k=%k; echo $${k##*.}'", IMPORT{builtin}="path_id", SYMLINK+="amc525_mbf/$env{ID_PATH}/amc525_mbf.%c"
 
 # vim: set filetype=udevrules:
