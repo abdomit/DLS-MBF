@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Converts FPGA bit stream file into a U-Boot loadable image suitable for
 # writing to the AMC525 flash.
@@ -35,7 +35,7 @@ IH_COMP_NONE     =  0           # No Compression Used
 
 # Read file to convert into memory
 assert len(sys.argv) == 3, 'Usage: %s input.bit output.img' % sys.argv[0]
-file_data = open(sys.argv[1]).read()
+file_data = open(sys.argv[1], 'rb').read()
 
 # Create U-Boot header.  This corresponds to calling u-boot mkimage thus:
 #
@@ -57,10 +57,10 @@ header['ih_comp']  = IH_COMP_NONE
 header['ih_name']  = "FPGA"
 
 # Fill in header CRC
-header['ih_hcrc']  = binascii.crc32(header.tostring())
+header['ih_hcrc']  = binascii.crc32(header.tobytes())
 
 # Finally write image file to destination
-output = open(sys.argv[2], 'w')
-output.write(header.tostring())
+output = open(sys.argv[2], 'wb')
+output.write(header.tobytes())
 output.write(file_data)
 output.close()

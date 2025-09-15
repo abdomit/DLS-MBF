@@ -30,7 +30,7 @@ MUST_DEFINE += DRV_GROUP
 # Identifies license server for FPGA tools
 LM_LICENSE_FILE =
 
-PYTHON = python2
+PYTHON = python3
 
 BUILD_DIR = $(MBF_TOP)/build
 FPGA_BUILD_DIR = $(BUILD_DIR)/fpga

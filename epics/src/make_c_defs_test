@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Generates C file using generated definitions
 
@@ -13,15 +13,15 @@ def make_name(context, name):
 
 class GenerateMethods(parse.register_defs.WalkParse):
     def check_offset(self, field_name, offset):
-        print
-        print '    offset = offsetof(struct %s, %s);' % (
-            self.top_name, field_name)
-        print '    printf("offsetof(%s, %s) = %%zd   ", offset);' % (
-            self.top_name, field_name)
-        print '    test_ok = offset == %d;' % (4 * offset)
-        print '    printf("expected %d : %%s\\n", test_ok ? "OK" : "FAIL!");' \
-            % (4 * offset)
-        print '    if (!test_ok) failed += 1;'
+        print()
+        print('    offset = offsetof(struct %s, %s);' % (
+            self.top_name, field_name))
+        print('    printf("offsetof(%s, %s) = %%zd   ", offset);' % (
+            self.top_name, field_name))
+        print('    test_ok = offset == %d;' % (4 * offset))
+        print('    printf("expected %d : %%s\\n", test_ok ? "OK" : "FAIL!");' \
+            % (4 * offset))
+        print('    if (!test_ok) failed += 1;')
 
 
     def walk_register_array(self, context, array):
@@ -37,10 +37,10 @@ class GenerateMethods(parse.register_defs.WalkParse):
             self.walk_register(context, register)
 
     def walk_overlay(self, context, overlay):
-        print >>sys.stderr, 'Omitting overlay', context, overlay.name
+        print('Omitting overlay', context, overlay.name, file=sys.stderr)
 
     def walk_union(self, context, union):
-        print >>sys.stderr, 'Omitting union', context, union.name
+        print('Omitting union', context, union.name, file=sys.stderr)
 
     def walk_group(self, context, group):
         if group.definition:
@@ -57,9 +57,9 @@ class GenerateMethods(parse.register_defs.WalkParse):
 
 
 generate = GenerateMethods()
-defs = parse.register_defs.parse_defs(parse.indent.parse_file(file(DEFS)))
+defs = parse.register_defs.parse_defs(parse.indent.parse_file(open(DEFS)))
 
-print '''\
+print('''\
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     size_t offset;
     bool test_ok;
     int failed = 0;
-''',
+''')
 
 for group in defs.group_defs:
     generate.walk_top(group)
@@ -80,10 +80,10 @@ for group in defs.group_defs:
 for group in defs.groups:
     generate.walk_top(group)
 
-print '''
+print('''
     if (failed)
         printf("%d tests FAILED!\\n", failed);
     else
         printf("All tests OK\\n");
     return failed ? 1 : 0;
-}'''
+}''')
