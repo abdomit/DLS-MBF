@@ -23,8 +23,8 @@ AMC525_SERVER = l-c31-3 199
 
 # Definitions needed for EPICS driver build
 #
-EPICS_DEVICE = /home/dserver/runtime/epics_device
-EPICS_BASE = /home/dserver/runtime/epics-base
+EPICS_DEVICE = /opt/mbf/epics_device
+EPICS_BASE = /opt/mbf/epics-base
 
 # Permissions for the driver
 DRV_GROUP = 1104
@@ -33,6 +33,6 @@ DRV_GROUP = 1104
 MEX = /sware/com/matlab_2017a/bin/mex
 
 # Path to Python executable used for the tunefit IOC
-TUNEFIT_PYTHON = /home/dserver/runtime/venvs/venv_tunefit/bin/python3
+TUNEFIT_PYTHON = /opt/mbf/venvs/venv_tunefit/bin/python3
 
 # vim: set filetype=make:
