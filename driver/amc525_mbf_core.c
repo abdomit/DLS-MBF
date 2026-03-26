@@ -231,7 +231,11 @@ static int enable_board(struct pci_dev *pdev)
     rc = pci_request_regions(pdev, DEVICE_NAME);
     TEST_RC(rc, no_regions, "Unable to reserve resources");
 
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+    rc = dma_set_mask(&pdev->dev, DMA_BIT_MASK(64));
+    #else
     rc = pci_set_dma_mask(pdev, DMA_BIT_MASK(64));
+    #endif
     TEST_RC(rc, no_dma_mask, "Unable to set DMA mask");
 
     pci_set_master(pdev);
@@ -413,7 +417,11 @@ static int __init amc525_mbf_init(void)
     rc = alloc_chrdev_region(&device_major, 0, MAX_MINORS, DEVICE_NAME);
     TEST_RC(rc, no_chrdev, "Unable to allocate dev region");
 
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+    device_class = class_create(DEVICE_NAME);
+    #else
     device_class = class_create(THIS_MODULE, DEVICE_NAME);
+    #endif
     TEST_PTR(device_class, rc, no_class, "Unable to create class");
 
     rc = pci_register_driver(&amc525_mbf_driver);
