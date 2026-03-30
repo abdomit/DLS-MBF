@@ -17,8 +17,8 @@
 #include "configs.h"
 
 
-const struct hardware_delays hardware_delays;
-const struct system_config system_config;
+struct hardware_delays hardware_delays;
+struct system_config system_config;
 
 
 /* We're going to be naughty in the following code and create mutable references
@@ -38,7 +38,7 @@ const struct system_config system_config;
         .address = (void *) &hardware_delays.entry, \
     }
 
-static const struct config_entry hardware_delays_entries[] = {
+static struct config_entry hardware_delays_entries[] = {
     DELAY_ENTRY(MMS_ADC_DELAY),
     DELAY_ENTRY(MMS_ADC_REJECT_DELAY),
     DELAY_ENTRY(MMS_ADC_FIR_DELAY),
@@ -81,7 +81,7 @@ static const struct config_entry hardware_delays_entries[] = {
         .address = (void *) &system_config.entry, \
     }
 
-static const struct config_entry system_config_entries[] = {
+static struct config_entry system_config_entries[] = {
     SYSTEM_ENTRY(string, device_address),
     SYSTEM_ENTRY(string, epics_name),
     SYSTEM_ENTRY(string, axis0_name),

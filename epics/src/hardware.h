@@ -20,7 +20,7 @@ struct interrupts;
 
 /* This structure is filled in when initialise_hardware() is called and is
  * available for use throughout the system. */
-extern const struct hardware_config {
+extern struct hardware_config {
     unsigned int bunches;
     unsigned int adc_taps;
     unsigned int bunch_taps;

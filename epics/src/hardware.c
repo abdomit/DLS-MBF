@@ -25,7 +25,7 @@
 
 /* Externally published hardware configuration, initialised during call to
  * initialise_hardware(), subsequently constant. */
-const struct hardware_config hardware_config;
+struct hardware_config hardware_config;
 
 
 static int dram0_device = -1;
