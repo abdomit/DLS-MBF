@@ -1,7 +1,7 @@
 /* There are two configurations loaded during startup.  One defines hardware
  * delays, the other defines basic system configuration settings. */
 
-extern const struct hardware_delays {
+extern struct hardware_delays {
     bool valid;                         // If not set, all fields are zero
 
     unsigned int MMS_ADC_DELAY;
@@ -38,7 +38,7 @@ extern const struct hardware_delays {
     int PLL_ADC_REJECT_DELAY;
 } hardware_delays;
 
-extern const struct system_config {
+extern struct system_config {
     const char *device_address;         // Name of hardware device
     const char *epics_name;             // Prefix for all EPICS names
     const char *axis0_name;             // Name of the two axes, normally

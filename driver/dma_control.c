@@ -1,5 +1,6 @@
 /* Implements access to memory via dma. */
 
+#include <linux/version.h>
 #include <linux/pci.h>
 #include <linux/delay.h>
 #include <linux/module.h>
@@ -154,8 +155,13 @@ ssize_t read_dma_memory(
     *buffer = dma->buffer + start_offset;
 
     /* Hand the buffer over to the DMA engine. */
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+    dma_sync_single_for_device(
+        &dma->pdev->dev, dma->buffer_dma, dma->buffer_size,  DMA_FROM_DEVICE);
+    #else
     pci_dma_sync_single_for_device(
         dma->pdev, dma->buffer_dma, dma->buffer_size,  DMA_FROM_DEVICE);
+    #endif
 
     /* Reset the DMA engine if necessary. */
     maybe_reset_dma(dma);
@@ -177,8 +183,13 @@ ssize_t read_dma_memory(
 
     /* Restore the buffer to CPU access (really just flushes associated cache
      * entries). */
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+    dma_sync_single_for_cpu(
+        &dma->pdev->dev, dma->buffer_dma, dma->buffer_size,  DMA_FROM_DEVICE);
+    #else
     pci_dma_sync_single_for_cpu(
         dma->pdev, dma->buffer_dma, dma->buffer_size,  DMA_FROM_DEVICE);
+    #endif
 
     return count;
 
@@ -226,10 +237,17 @@ int initialise_dma_control(
     TEST_PTR(dma->buffer, rc, no_buffer, "Unable to allocate DMA buffer");
 
     /* Get the associated DMA address for the buffer. */
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+    dma->buffer_dma = dma_map_single(
+        &pdev->dev, dma->buffer, dma->buffer_size, DMA_FROM_DEVICE);
+    TEST_OK(!dma_mapping_error(&pdev->dev, dma->buffer_dma),
+        rc = -EIO, no_dma_map, "Unable to map DMA buffer");
+    #else
     dma->buffer_dma = pci_map_single(
         pdev, dma->buffer, dma->buffer_size, DMA_FROM_DEVICE);
     TEST_OK(!pci_dma_mapping_error(pdev, dma->buffer_dma),
         rc = -EIO, no_dma_map, "Unable to map DMA buffer");
+    #endif
 
     /* Final initialisation, now ready to run. */
     mutex_init(&dma->mutex);
@@ -240,7 +258,12 @@ int initialise_dma_control(
     return 0;
 
 
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+    dma_unmap_single(&pdev->dev, dma->buffer_dma, dma->buffer_size,
+        DMA_FROM_DEVICE);
+    #else
     pci_unmap_single(pdev, dma->buffer_dma, dma->buffer_size, DMA_FROM_DEVICE);
+    #endif
 no_dma_map:
     free_pages((unsigned long) dma->buffer, dma->buffer_shift - PAGE_SHIFT);
 no_buffer:
@@ -252,8 +275,13 @@ no_memory:
 
 void terminate_dma_control(struct dma_control *dma)
 {
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+    dma_unmap_single(
+        &dma->pdev->dev, dma->buffer_dma, dma->buffer_size, DMA_FROM_DEVICE);
+    #else
     pci_unmap_single(
         dma->pdev, dma->buffer_dma, dma->buffer_size, DMA_FROM_DEVICE);
+    #endif
     free_pages((unsigned long) dma->buffer, dma->buffer_shift - PAGE_SHIFT);
     kfree(dma);
 }
