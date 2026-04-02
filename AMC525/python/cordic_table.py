@@ -13,7 +13,7 @@ def generate_body():
     scale = 2**BITS / 2 / np.pi
 
     atan = np.arctan(2.**-(np.arange(ROUNDS)))
-    result = np.int_(np.round_(scale * atan))
+    result = np.int_(np.round(scale * atan))
 
     for r in result[:-1]:
         print('        X"%05x",' % r)

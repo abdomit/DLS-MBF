@@ -16,8 +16,8 @@ def generate_body():
     time = np.pi / 4 / SAMPLES * np.arange(SAMPLES)
     scale = 2**EXTRA_BITS * (2**RESULT_BITS - 1)
 
-    sins = np.int_(np.round_(scale * np.sin(time)))
-    coss = np.int_(np.round_(scale * np.cos(time)))
+    sins = np.int_(np.round(scale * np.sin(time)))
+    coss = np.int_(np.round(scale * np.cos(time)))
 
     mask = 2**STORED_BITS - 1
 
