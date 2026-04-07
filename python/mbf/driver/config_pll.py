@@ -114,7 +114,9 @@ class FieldWriter(object):
     def __write_value(self, name, value):
         for reg, width, offset in self.__fields[name]:
             field_mask = ((1 << width) - 1) << offset
-            reg_value = self._read_register(reg) & ~field_mask
+            reg_value = self._read_register(reg)
+            reg_value = int(reg_value)
+            reg_value &= ~field_mask
             field_value = (value << offset) & field_mask
             value >>= width
 

@@ -46,6 +46,7 @@ def setup_dac(regs):
     DAC_SPI[0x18] = status | 2      # Set soft alignment request bit
     status = DAC_SPI[0X18]
     assert status & 0x04            # Validate FIFO acknowlege
+    status = int(status)
     DAC_SPI[0x18] = status & ~2     # Reset soft alignment bit
     status = DAC_SPI[0X18]
     assert not (status & 0x04)      # Validate FIFO acknowlege

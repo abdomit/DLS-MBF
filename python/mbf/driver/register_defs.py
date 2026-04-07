@@ -30,6 +30,7 @@ class Field:
         mask = mask << offset
 
         reg = parent._read_value()
+        reg = int(reg)
         parent._write_value((value << offset) | (reg & ~mask))
 
 
