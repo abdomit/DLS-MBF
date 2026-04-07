@@ -15,7 +15,6 @@ PYTHON=$(read_key $TOP/CONFIG TUNEFIT_PYTHON)
 # This seems necessary for softioc
 # otherwise the ioc cannot connect other iocs
 unset LD_LIBRARY_PATH
-export LD_LIBRARY_PATH
 
 HERE="$(dirname "$0")"
 $PYTHON "$HERE"/tune_fit_ioc "$@"

@@ -53,9 +53,9 @@ EPICS Driver
     Component       Version Download from
     =============== ======= ====================================================
     EPICS           3.14    https://epics.anl.gov/base/index.php
-    epics_device    2.0     https://github.com/Araneidae/epics_device
-    epicsdbbuilder  1.2     https://github.com/Araneidae/epicsdbbuilder
-    cothread        2.14    https://github.com/dls-controls/cothread
+    epics_device    2.0     https://github.com/DiamondLightSource/epics_device
+    epicsdbbuilder  1.5     https://github.com/DiamondLightSource/epicsdbbuilder
+    cothread        2.20    https://github.com/DiamondLightSource/cothread
     =============== ======= ====================================================
 
     Note that epics_device must be at least the version shown.
@@ -68,7 +68,7 @@ Tune Fitter
     =============== ======= ====================================================
     Component       Version Download from
     =============== ======= ====================================================
-    pythonIoc       2.15    https://github.com/Araneidae/pythonIoc
+    pythonIoc       4.5.0   https://github.com/DiamondLightSource/pythonSoftIOC
     =============== ======= ====================================================
 
 

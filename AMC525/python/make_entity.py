@@ -1,6 +1,5 @@
 import sys
 import os
-import types
 
 # Inputs are a list of signals, a list of pin assignments, and a list of signals
 # actually used.
@@ -42,10 +41,11 @@ set_property PACKAGE_PIN %(location)s [get_ports {%(name)s%(index)s}]
 
 
 def uncomment_file(file_name, comment):
-    for line in file(file_name):
-        line = line.split(comment, 1)[0].rstrip()
-        if line:
-            yield line
+    with open(file_name) as file:
+        for line in file:
+           line = line.split(comment, 1)[0].rstrip()
+           if line:
+                yield line
 
 
 # Expands strings of the form a{b,c} into ab ac.  Can't cope with nested
@@ -115,7 +115,7 @@ def check_signal_range(signal_range, range):
     # A bit complicated: range can be None, a single number, or a tuple.
     if range is None:
         assert signal_range is None, 'Must explitly specify range'
-    elif isinstance(range, types.TupleType):
+    elif isinstance(range, tuple):
         s_start, s_end = signal_range
         i_start, i_end = range
         if s_start <= s_end:
