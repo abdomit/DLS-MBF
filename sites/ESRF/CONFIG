@@ -3,7 +3,7 @@
 SITE = ESRF
 
 # Override default and install targets for make
-DEFAULT_TARGETS = driver python epics matlab iocs
+DEFAULT_TARGETS = driver python epics iocs
 INSTALL_TARGETS = $(DEFAULT_TARGETS)
 
 # Place the driver build on the local filesystem
@@ -11,14 +11,14 @@ INSTALL_TARGETS = $(DEFAULT_TARGETS)
 DRIVER_BUILD_DIR = /tmp/mbf/build
 
 # Place the FPGA build in /scratch
-FPGA_BUILD_DIR = /users/beroche/Desktop/MBF-fpga/cleaning-sy
+FPGA_BUILD_DIR = /dev/shm/MBF-fpga
 
 # Definitions needed for FPGA build
 VIVADO = /machfs/beroche/vivado/viva192/Vivado/2019.2/settings64.sh
 LM_LICENSE_FILE = 2100@licsrv-el
 
 # Server to connect to for loading FPGA image followed by IP of card
-AMC525_SERVER = l-c31-3 199
+AMC525_SERVER = l-mbf-4 199
 
 
 # Definitions needed for EPICS driver build
