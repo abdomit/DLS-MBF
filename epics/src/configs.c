@@ -123,19 +123,12 @@ static unsigned int convert_field(unsigned int value)
 }
 
 
-#define ASSIGN_FIELD(field, value) \
-    *CAST_TO(typeof(value) *, &(field)) = (value)
-#define CONVERT_FIELD(name) \
-    ASSIGN_FIELD(hardware_delays.name, convert_field(hardware_delays.name))
-#if 0
-#define CONVERT_FIELD(name) \
-    *CAST_TO(unsigned int *, &hardware_delays.name) = \
+#define CONVERT_FIELD(name) hardware_delays.name = \
         convert_field(hardware_delays.name)
-#endif
 
 static void convert_hardware_config(void)
 {
-    ASSIGN_FIELD(hardware_delays.valid, true);
+    hardware_delays.valid = true;
 
     CONVERT_FIELD(MMS_ADC_DELAY);
     CONVERT_FIELD(MMS_ADC_REJECT_DELAY);
