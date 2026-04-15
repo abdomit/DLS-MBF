@@ -45,14 +45,16 @@ USERS="$(lsof -t /dev/amc525_mbf.* 2>/dev/null)" || true
 
 SCP_OPTS=""
 
-# Extract OpenSSH version (e.g., "OpenSSH_9.3p1" → "9.3")
-OPENSSH_VERSION=$(ssh -V 2>&1 | grep -oE 'OpenSSH_[0-9]+\.[0-9]+' | cut -d_ -f2)
-
 # Decide whether to use -O
-printf '%s\n%s\n' "9.0" "$OPENSSH_VERSION" | sort -C -V
-status=$?
+openssh_version_ge() {
+	# Extract OpenSSH version (e.g., "OpenSSH_9.3p1" → "9.3")
+	OPENSSH_VERSION=$(ssh -V 2>&1 |
+		grep -oE 'OpenSSH_[0-9]+\.[0-9]+' |
+		cut -d_ -f2)
+	printf '%s\n%s\n' "$1" "$OPENSSH_VERSION" | sort -C -V
+}
 
-if [ "$status" -eq 0 ]; then
+if openssh_version_ge "9.0" ; then
     SCP_OPTS="$SCP_OPTS -O"
 fi
 
