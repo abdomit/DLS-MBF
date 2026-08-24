@@ -10,12 +10,15 @@ INSTALL_TARGETS = $(DEFAULT_TARGETS)
 # so that root have write access
 DRIVER_BUILD_DIR = /tmp/mbf/build
 
-# Place the FPGA build in /scratch
+# Definitions needed for FPGA build and simulation
 FPGA_BUILD_DIR = /dev/shm/MBF-fpga
+SIM_BUILD_DIR = /machfs/beroche/mbf/sim/build/sim
 
-# Definitions needed for FPGA build
 VIVADO = /machfs/beroche/vivado/viva192/Vivado/2019.2/settings64.sh
-LM_LICENSE_FILE = 2100@licsrv-el
+VSIM = /cae/soft/qsim106c/questasim/bin/vsim
+LM_LICENSE_FILE = \
+    2100@licsrv-el \
+    1717@licsrv-el
 
 # Server to connect to for loading FPGA image followed by IP of card
 AMC525_SERVER = l-mbf-4 199
