@@ -106,7 +106,6 @@ architecture arch of sequencer_top is
     -- Frequency offset from super sequencer
     signal nco_freq_base : angle_t;
     signal super_count : super_count_t;
-    signal tune_pll_offset : signed(31 downto 0);
 
     -- Seq state loading
     --
@@ -132,15 +131,6 @@ architecture arch of sequencer_top is
         NCO_PROCESS_DELAY - BUNCH_SELECT_DELAY/2 + 1;
 
 begin
-    pll_freq_delay : entity work.dlyreg generic map (
-        DLY => 2,
-        DW => 32
-    ) port map (
-        clk_i => dsp_clk_i,
-        data_i => std_ulogic_vector(tune_pll_offset_i),
-        signed(data_o) => tune_pll_offset
-    );
-
     registers : entity work.sequencer_registers port map (
         dsp_clk_i => dsp_clk_i,
 
@@ -236,7 +226,6 @@ begin
         freq_base_i => nco_freq_base,
         seq_state_i => seq_state,
         last_turn_i => last_turn,
-        tune_pll_offset_i => tune_pll_offset,
 
         state_end_o => state_end,
 
