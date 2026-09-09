@@ -236,6 +236,7 @@ begin
         write_reg(REG_NCO1_FREQ_LOW, X"00000000");
         write_reg(REG_NCO1_FREQ_HIGH, (
             SWEPT_NCO_FREQ_HIGH_BITS_BITS => X"1900",
+            SWEPT_NCO_FREQ_HIGH_RESET_PHASE_BIT => '1',
             others => '0'));
         write_reg(REG_NCO1_REPEAT, (
             SWEPT_NCO_REPEAT_COUNT_BITS => X"0000",

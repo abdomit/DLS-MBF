@@ -112,6 +112,9 @@ FIRMWARE_COMPAT_UNSTABLE = 254
     FREQ_HIGH        W
         # High order bits, writing this field triggers frequency update.
         .BITS           16
+        # Setting this bit triggers a reset of the NCO phase when this is
+        # written.
+        .RESET_PHASE
     DELTA_FREQ_LOW     W
     DELTA_FREQ_HIGH    W
         # High order bits, writing this field triggers delta_freq update.
@@ -128,6 +131,8 @@ FIRMWARE_COMPAT_UNSTABLE = 254
     # Write to this register to trigger the select actions
     COMMAND     WP
         # Starts a repetition of frequency sweeps.
+        # The NCO phase is reset when both the START and RESET bits are
+        # asserted simultaneously.
         .START
         # The NCO phase is reset when both the START and RESET_PHASE bits are
         # set simultaneously.

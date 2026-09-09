@@ -61,6 +61,7 @@ begin
         signal reset_sweep_turn_jj : std_ulogic;
 
         -- Phase reset signals.
+        signal reset_phase_in_jj : std_ulogic;
         signal reset_phase_jj : std_ulogic;
 
         -- Signals used to start a repeat sequence.
@@ -144,6 +145,7 @@ begin
 
             repeat_count_i => repeat_readout_jj,
 
+            reset_phase_o => reset_phase_in_jj,
             reset_sweep_o => reset_sweep_jj
         );
 
@@ -238,6 +240,7 @@ begin
             reset_sweep_i => reset_sweep_jj,
             reset_turn_o => reset_sweep_turn_jj,
 
+            reset_phase_i => reset_phase_in_jj,
             nco_reset_o => reset_phase_jj,
 
             repeat_start_i => repeat_start_jj,
