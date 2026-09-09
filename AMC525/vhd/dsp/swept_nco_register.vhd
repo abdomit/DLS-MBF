@@ -1,6 +1,6 @@
 -- Register file for writing NCO parameters.
--- The 48-bit frequencies values are set with two 32-bit register words,
--- updated only on write to second word.
+-- The 48-bit frequency values are set with two 32-bit register words,
+-- updated only on write to the second word.
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -34,6 +34,7 @@ entity swept_nco_register is
         dwell_count_o : out dwell_count_t := (others => '0');
         point_count_o : out capture_count_t := (others => '0');
         nco_gain_o : out nco_gain_t := (others => '0');
+        reset_phase_o : out std_ulogic := '0';
         enable_tune_pll_o : out std_ulogic := '0';
         repeat_count_o : out repeat_count_t := (others => '0');
         repeat_continuous_o : out std_ulogic;
@@ -110,6 +111,10 @@ begin
                     47 downto 32 =>
                         unsigned(write_data_i(SWEPT_NCO_FREQ_HIGH_BITS_BITS))
                 );
+                reset_phase_o <=
+                    write_data_i(SWEPT_NCO_FREQ_HIGH_RESET_PHASE_BIT);
+            else
+                reset_phase_o <= '0';
             end if;
         end if;
     end process;

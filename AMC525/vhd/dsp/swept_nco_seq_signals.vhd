@@ -18,6 +18,7 @@ entity swept_nco_seq_signals is
         reset_sweep_i : in std_ulogic;
         reset_turn_o : out std_ulogic;
 
+        reset_phase_i : in std_ulogic;
         nco_reset_o : out std_ulogic;
 
         repeat_start_i : in std_ulogic;
@@ -31,10 +32,10 @@ architecture arch of swept_nco_seq_signals is
     signal repeat_start_armed : std_ulogic := '0';
     signal reset_phase_armed : std_ulogic := '0';
     -- phase reset requested at the start of frequency sweep repetitions.
-    signal reset_phase : std_ulogic := '0';
+    signal reset_phase_at_start : std_ulogic := '0';
     -- phase reset signal has to be delayed by 1 turn to wait for the correct
     -- state end signal.
-    signal reset_phase_d1 : std_ulogic := '0';
+    signal reset_phase_at_start_d1 : std_ulogic := '0';
 
 begin
     -- Reset processing.  The reset_sweep_i pulse comes in as a one clock
@@ -48,8 +49,8 @@ begin
 
                 repeat_start_turn_o <= repeat_start_armed;
                 repeat_start_armed <= '0';
-                reset_phase <= '0';
-                reset_phase_d1 <= reset_phase;
+                reset_phase_at_start <= '0';
+                reset_phase_at_start_d1 <= reset_phase_at_start;
             end if;
 
             if reset_sweep_i = '1' then
@@ -58,7 +59,7 @@ begin
 
             if repeat_start_i = '1' then
                 repeat_start_armed <= '1';
-                reset_phase <= repeat_start_reset_i;
+                reset_phase_at_start <= repeat_start_reset_i;
             end if;
         end if;
     end process;
@@ -66,12 +67,13 @@ begin
 
     -- Manage NCO phase reset signal.
     --
-    -- Phase reset is performed at the begining of a frequency sweep train if
-    -- the RESET_PHASE bit is asserted simultaneously with the START bit.
+    -- Phase reset is either asked by the user (reset_phase_i) or performed
+    -- at the begining of a frequency sweep train if the RESET_PHASE bit is
+    -- asserted simultaneously with the START bit (reset_phase_at_start_d1).
     process (dsp_clk_i) begin
         if rising_edge(dsp_clk_i) then
             -- phase reset requested
-            if reset_phase_d1 = '1' then
+            if reset_phase_i or reset_phase_at_start_d1 then
                 reset_phase_armed <= '1';
             end if;
 

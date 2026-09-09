@@ -594,7 +594,7 @@ void hw_write_nco_config(int axis, enum swept_nco_id nco,
         // freq_high is written at the end to reset the phase, if needed.
         WRITE_FIELDS(swept_nco->freq_high,
             .bits = (nco_config->start_freq >> 32) & 0xFFFF,
-            .reset_phase = 0);
+            .reset_phase = nco_config->start_freq == 0);
     }
 }
 

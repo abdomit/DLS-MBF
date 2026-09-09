@@ -250,6 +250,11 @@ static bool write_freq(void *context, double *value)
 
     hw_write_nco_config(nco->axis, nco->nco, &nco->nco_config);
 
+    /* If a phase reset is required, it must be performed using the COMMAND
+     * register rather than the FREQ_HIGH register.  A frequency sweep may be
+     * in progress, so the sweep must be stopped before resetting the phase.
+     * The COMMAND register handles this sequence; writing to FREQ_HIGH alone
+     * would not properly stop an ongoing sweep before the phase reset. */
     reset_phase = nco->nco_config.start_freq == 0;
     hw_write_nco_start(nco->axis, nco->nco, reset_phase, true);
 
