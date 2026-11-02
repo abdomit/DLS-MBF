@@ -95,8 +95,6 @@ Use the following syntax:
 
 Unlike wiki page links, attachment links must include the file name and its extension.
 
-The link target must point to the file in the `files/` directory.
-
 
 ## 3. Mathematical Formulas
 
