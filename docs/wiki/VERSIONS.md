@@ -10,4 +10,4 @@ Each entry identifies the commit containing the documentation associated with a 
 |---|---|
 | 1.4.2 | 7659fb0 |
 
-**Note:** The commit SHA must refer to a commit in the wiki repository, not the main documentation repository.
+**Note:** The commit SHA must refer to a commit in the wiki repository, not the main MBF repository.

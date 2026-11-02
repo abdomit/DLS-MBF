@@ -17,12 +17,14 @@ Examples:
 wiki/
 ├── _Sidebar.md
 ├── home.md
-├── Installation.md
-├── Multi-Bunch-Feedback.md
+├── home-Bringing-up-MBF.md
+├── home-Help-Pages-for-Multi-Bunch-Feedback.md
 ├── images/
-│   ├── system-overview.png
-│   ├── architecture.pdf
-│   └── example-data.csv
+│   ├── adc.png
+│   ├── overview.png
+├── files/
+│   ├── DEELS2019.pdf
+│   └── extensions.tgz
 └── ...
 ```
 ## 2. Links
@@ -51,7 +53,27 @@ See the [Installation](Installation) page for instructions.
 See the [Installation](Installation.md) page for instructions.
 ```
 
-### 2.2. Links to external websites
+### 2.2. Linking to a specific section of a wiki page
+
+You can also use **anchors** to link directly to a specific section within a wiki page.
+
+The anchor is appended to the page name, preceded by `#`. GitHub and GitLab automatically generate anchors from Markdown headings.
+
+To obtain an anchor, navigate to the desired section on the wiki and click the link icon next to its heading. Copy the resulting link and use the part following `#` as the anchor.
+
+For example, given a page containing the following heading:
+
+```markdown
+## Hardware
+```
+
+You can link directly to that section using:
+
+```markdown
+See the [Hardware](home-Bringing-up-MBF#hardware) section.
+```
+
+### 2.3. Links to external websites
 
 Use the full URL as the link target.
 
@@ -61,7 +83,7 @@ Example:
 See the [Git documentation](https://git-scm.com/doc) for more information.
 ```
 
-### 2.3. Links to downloadable attachments
+### 2.4. Links to downloadable attachments
 
 Links to downloadable files must follow a consistent format that includes a download icon and the file name.
 

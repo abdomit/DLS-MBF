@@ -21,7 +21,7 @@ The wiki pages are designed to be compatible with both GitHub and GitLab wikis, 
 
 The wiki content does not contain any absolute references to the hosting platform. Consequently, it can be forked to another GitHub or GitLab instance and used without modification.
 
-**Note:** This README and the accompanying maintenance documentation contain absolute links to the original repository. These links may need to be updated when the repository is forked or moved to another location.
+**Note:** This README contains absolute links to the original repository. These links may need to be updated when the repository is forked or moved to another location.
 
 ### How to clone the wiki repository
 
