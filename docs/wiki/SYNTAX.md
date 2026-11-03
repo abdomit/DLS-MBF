@@ -31,7 +31,7 @@ wiki/
 Two files have a special role in the wiki:
 
 - **`home.md`:** Defines the wiki home page, which is displayed when users access the wiki's main entry point.
-- **`_Sidebar.md`:** Defines the navigation sidebar, providing links to the main documentation pages.
+- **`_Sidebar.md`:** Defines the wiki navigation sidebar, providing a hierarchical overview of all documentation pages.
 
 ## Links
 
@@ -162,9 +162,6 @@ Result:
 
 First line.<br>
 Second line.
-
-A blank line should be used to separate paragraphs instead of `<br>` when a new paragraph is intended.
-
 
 ## Mathematical Formulas
 
