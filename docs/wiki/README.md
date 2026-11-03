@@ -4,15 +4,6 @@ The **DLS-MBF documentation** is maintained in the **Wiki** associated with this
 
 ➡️ **[Go to the DLS-MBF Wiki](https://github.com/DiamondLightSource/DLS-MBF/wiki)**
 
-## Documentation maintenance instructions
-
-This `README.md` and the following files contains the guidelines and metadata required to maintain the DLS-MBF documentation.
-
-| File | Purpose |
-|---|---|
-| [`SYNTAX.md`](SYNTAX.md) | Markdown conventions and cross-platform compatibility rules |
-| [`VERSIONS.md`](VERSIONS.md) | Mapping between MBF versions and wiki documentation commits |
-
 ## About the wiki repository
 
 The documentation content itself is maintained in the project wiki, which is different from the DLS-MBF repository.
@@ -41,15 +32,20 @@ git clone git@github.com:DiamondLightSource/DLS-MBF.wiki.git
 
 To access the documentation corresponding to a previous MBF version, retrieve the commit SHA recorded in [`VERSIONS.md`](VERSIONS.md) and check out the corresponding commit in the wiki repository.
 
-## Documentation guidelines
-
-The [`SYNTAX.md`](SYNTAX.md) file describes the rules to follow when creating or modifying wiki pages.
-
-This file describes the Markdown conventions and formatting rules that must be followed to maintain compatibility between GitHub and GitLab wikis.
-
 ## Wiki maintenance notes
 
 The following points should be considered whenever the wiki is updated.
+
+### Documentation guidelines
+
+This `README.md` and the following files contains the guidelines and metadata required to maintain the DLS-MBF documentation.
+
+| File | Purpose |
+|---|---|
+| [`SYNTAX.md`](SYNTAX.md) | Markdown conventions and cross-platform compatibility rules |
+| [`VERSIONS.md`](VERSIONS.md) | Mapping between MBF versions and wiki documentation commits |
+
+The [`SYNTAX.md`](SYNTAX.md) file describes the Markdown conventions and formatting rules that must be followed to maintain compatibility between GitHub and GitLab wikis.
 
 ### Manually maintained tables of contents
 
