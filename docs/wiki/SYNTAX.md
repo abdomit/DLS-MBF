@@ -27,7 +27,7 @@ wiki/
 │   └── extensions.tgz
 └── ...
 ```
-## 2. Links
+## 1. Links
 
 Use the standard Markdown link syntax for all links:
 
@@ -35,7 +35,7 @@ Use the standard Markdown link syntax for all links:
 [Link text](target)
 ```
 
-### 2.1. Links to wiki pages
+### 1.1. Links to wiki pages
 
 When linking to another wiki page, **do not include the `.md` extension** in the link target.
 
@@ -53,7 +53,7 @@ See the [Installation](Installation) page for instructions.
 See the [Installation](Installation.md) page for instructions.
 ```
 
-### 2.2. Linking to a specific section of a wiki page
+### 1.1. Linking to a specific section of a wiki page
 
 You can also use **anchors** to link directly to a specific section within a wiki page.
 
@@ -73,7 +73,7 @@ You can link directly to that section using:
 See the [Hardware](home-Bringing-up-MBF#hardware) section.
 ```
 
-### 2.3. Links to external websites
+### 1.1. Links to external websites
 
 Use the full URL as the link target.
 
@@ -83,7 +83,7 @@ Example:
 See the [Git documentation](https://git-scm.com/doc) for more information.
 ```
 
-### 2.4. Links to downloadable attachments
+### 1.1. Links to downloadable attachments
 
 Links to downloadable files must follow a consistent format that includes a download icon and the file name.
 
@@ -95,12 +95,76 @@ Use the following syntax:
 
 Unlike wiki page links, attachment links must include the file name and its extension.
 
+## Text Formatting
 
-## 3. Mathematical Formulas
+The following formatting options can be used to improve the readability of wiki pages.
+
+### Bold
+
+Use double asterisks (`**`) to display text in bold.
+
+```markdown
+**This text is bold.**
+```
+
+### Italic
+
+Use single asterisks (`*`) to display text in italic.
+
+```markdown
+*This text is italic.*
+```
+
+### Bold and italic
+
+Both styles can be combined using three asterisks (`***`).
+
+```markdown
+***This text is bold and italic.***
+```
+
+### Superscript
+
+Use the HTML `<sup>` tag to display superscript text.
+
+```html
+E = mc<sup>2</sup>
+```
+
+Result: E = mc<sup>2</sup>
+
+### Subscript
+
+Use the HTML `<sub>` tag to display subscript text.
+
+```html
+H<sub>2</sub>O
+```
+
+Result: H<sub>2</sub>O
+
+### Line breaks
+
+Use the HTML `<br>` tag to force a line break without starting a new paragraph.
+
+```html
+First line.<br>
+Second line.
+```
+
+Result:
+
+First line.<br>
+Second line.
+
+A blank line should be used to separate paragraphs instead of `<br>` when a new paragraph is intended.
+
+
+## 1. Mathematical Formulas
 
 Mathematical formulas can be included either inline or as separate blocks.
 
-### 3.1. Inline formulas
+### 1.1. Inline formulas
 
 Use single dollar signs (`$`) to delimit an inline formula.
 
@@ -114,7 +178,7 @@ Result:
 
 The relativistic energy is given by $E = mc^2$.
 
-### 3.2. Block formulas
+### 1.1. Block formulas
 
 Use double dollar signs (`$$`) to delimit a formula displayed as a separate block.
 
@@ -130,11 +194,11 @@ Block formulas should be separated from surrounding text by blank lines.
 
 **Compatibility note:** Mathematical rendering may differ between GitHub and GitLab. Verify that formulas display correctly on both platforms.
 
-## 4. Admonition Blocks
+## 1. Admonition Blocks
 
-Admonition blocks can be used to highlight important information, recommendations, warnings, or potential risks.
+Admonition blocks can be used to highlight important information, tips, warnings, or potential risks.
 
-The following block types are permitted:
+The following block types are supported:
 
 - `[!note]`
 - `[!tip]`
@@ -142,69 +206,31 @@ The following block types are permitted:
 - `[!warning]`
 - `[!caution]`
 
+Use the following syntax, replacing `note` with the desired block type:
+
+```markdown
+> [!note]
+> This is an example of an admonition block.
+```
+
 ### Examples
 
-#### Note
-
-```markdown
 > [!note]
 > This parameter is optional.
-```
-
-Result:
-
-> [!note]
-> This parameter is optional.
-
-#### Tip
-
-```markdown
-> [!tip]
-> Use a relative link when referencing another wiki page.
-```
-
-Result:
 
 > [!tip]
 > Use a relative link when referencing another wiki page.
 
-#### Important
-
-```markdown
 > [!important]
 > Update the manually maintained table of contents when adding a new page.
-```
-
-Result:
-
-> [!important]
-> Update the manually maintained table of contents when adding a new page.
-
-#### Warning
-
-```markdown
-> [!warning]
-> Changing this parameter may affect the system configuration.
-```
-
-Result:
 
 > [!warning]
 > Changing this parameter may affect the system configuration.
 
-#### Caution
-
-```markdown
-> [!caution]
-> Verify the configuration before applying changes to a running system.
-```
-
-Result:
-
 > [!caution]
 > Verify the configuration before applying changes to a running system.
 
-## 5. Compatibility Principle
+## 1. Compatibility Principle
 
 The primary requirement is that the same wiki content must be usable on both GitHub and GitLab without modification.
 
