@@ -7,14 +7,11 @@ Diamond Light Source and is designed to run on specific hardware documented
 below.
 
 Full documentation for using the system can be found at the `MBF Documentation`_
-pages.
+pages.  See the `Bringing up MBF`_ page for instructions on setting up MBF for
+first operation.
 
 Instructions for maintaining the documentation are provided in
-`docs/wiki/README.md`_. These include guidelines on
-documentation structure, Markdown syntax and version tracking.
-
-See the `Bringing up MBF`_ page for instructions on setting up MBF for
-first operation.
+`docs/wiki/README.md`_.
 
 ..  _MBF Documentation: https://github.com/DiamondLightSource/DLS-MBF/wiki
 ..  _docs/wiki/README.md: docs/wiki/README.md
