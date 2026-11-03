@@ -4,7 +4,7 @@ This document defines the rules to follow when creating or modifying wiki pages 
 
 The main objective is to ensure that the documentation remains compatible with both **GitHub and GitLab wikis**, without requiring platform-specific modifications.
 
-## 1. File Organisation
+## File Organisation
 
 Follow these rules when creating or organising wiki files:
 
@@ -27,7 +27,13 @@ wiki/
 │   └── extensions.tgz
 └── ...
 ```
-## 1. Links
+
+Two files have a special role in the wiki:
+
+- **`home.md`:** Defines the wiki home page, which is displayed when users access the wiki's main entry point.
+- **`_Sidebar.md`:** Defines the navigation sidebar, providing links to the main documentation pages.
+
+## Links
 
 Use the standard Markdown link syntax for all links:
 
@@ -35,7 +41,7 @@ Use the standard Markdown link syntax for all links:
 [Link text](target)
 ```
 
-### 1.1. Links to wiki pages
+### Links to wiki pages
 
 When linking to another wiki page, **do not include the `.md` extension** in the link target.
 
@@ -53,7 +59,7 @@ See the [Installation](Installation) page for instructions.
 See the [Installation](Installation.md) page for instructions.
 ```
 
-### 1.1. Linking to a specific section of a wiki page
+### Linking to a specific section of a wiki page
 
 You can also use **anchors** to link directly to a specific section within a wiki page.
 
@@ -73,7 +79,7 @@ You can link directly to that section using:
 See the [Hardware](home-Bringing-up-MBF#hardware) section.
 ```
 
-### 1.1. Links to external websites
+### Links to external websites
 
 Use the full URL as the link target.
 
@@ -83,7 +89,7 @@ Example:
 See the [Git documentation](https://git-scm.com/doc) for more information.
 ```
 
-### 1.1. Links to downloadable attachments
+### Links to downloadable attachments
 
 Links to downloadable files must follow a consistent format that includes a download icon and the file name.
 
@@ -160,11 +166,13 @@ Second line.
 A blank line should be used to separate paragraphs instead of `<br>` when a new paragraph is intended.
 
 
-## 1. Mathematical Formulas
+## Mathematical Formulas
 
 Mathematical formulas can be included either inline or as separate blocks.
 
-### 1.1. Inline formulas
+**Compatibility note:** Mathematical rendering may differ between GitHub and GitLab. Verify that formulas display correctly on both platforms.
+
+### Inline formulas
 
 Use single dollar signs (`$`) to delimit an inline formula.
 
@@ -178,7 +186,7 @@ Result:
 
 The relativistic energy is given by $E = mc^2$.
 
-### 1.1. Block formulas
+### Block formulas
 
 Use double dollar signs (`$$`) to delimit a formula displayed as a separate block.
 
@@ -192,9 +200,7 @@ $$
 
 Block formulas should be separated from surrounding text by blank lines.
 
-**Compatibility note:** Mathematical rendering may differ between GitHub and GitLab. Verify that formulas display correctly on both platforms.
-
-## 1. Admonition Blocks
+## Admonition Blocks
 
 Admonition blocks can be used to highlight important information, tips, warnings, or potential risks.
 
@@ -210,7 +216,7 @@ Use the following syntax, replacing `note` with the desired block type:
 
 ```markdown
 > [!note]
-> This is an example of an admonition block.
+> This parameter is optional.
 ```
 
 ### Examples
@@ -230,7 +236,7 @@ Use the following syntax, replacing `note` with the desired block type:
 > [!caution]
 > Verify the configuration before applying changes to a running system.
 
-## 1. Compatibility Principle
+## Compatibility Principle
 
 The primary requirement is that the same wiki content must be usable on both GitHub and GitLab without modification.
 
