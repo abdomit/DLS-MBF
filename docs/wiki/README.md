@@ -38,13 +38,6 @@ The following points should be considered whenever the wiki is updated.
 
 ### Documentation guidelines
 
-This `README.md` and the following files contains the guidelines and metadata required to maintain the DLS-MBF documentation.
-
-| File | Purpose |
-|---|---|
-| [`SYNTAX.md`](SYNTAX.md) | Markdown conventions and cross-platform compatibility rules |
-| [`VERSIONS.md`](VERSIONS.md) | Mapping between MBF versions and wiki documentation commits |
-
 The [`SYNTAX.md`](SYNTAX.md) file describes the Markdown conventions and formatting rules that must be followed to maintain compatibility between GitHub and GitLab wikis.
 
 ### Manually maintained tables of contents
